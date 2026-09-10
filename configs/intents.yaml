@@ -1,0 +1,159 @@
+brand: AmazonHelp
+intents:
+- id: order_delay_tracking
+  name: Order Delay & Package Tracking
+  description: Customer inquires about delayed delivery, tracking status, courier
+    handoff, or estimated delivery date.
+  positive_examples:
+  - '@AmazonHelp why is my order at my local courier for 6 days and still not delivered?
+    1 week late!'
+  - '@AmazonHelp tracking says out for delivery since yesterday morning but nothing
+    arrived. Where is my parcel?'
+  - '@AmazonHelp ordered with prime 2 day shipping and now it says delayed until next
+    week. What is happening?'
+  confusing_examples:
+  - '@AmazonHelp tracking says delivered but I did not receive anything (belongs to
+    missing_delivered_item)'
+  - '@AmazonHelp cancel my order because it is delayed (belongs to refund_cancellation)'
+  approximate_frequency: 0.28
+  default_action: AUTO_HANDLE
+  requires_human_if: delivery delayed over 7 business days or courier marked package
+    lost
+- id: missing_delivered_item
+  name: Marked Delivered But Not Received
+  description: Carrier tracking marks the parcel as delivered, but customer reports
+    it was never received or left missing.
+  positive_examples:
+  - '@AmazonHelp tracking says delivered to front porch at 2pm but nothing is there.
+    Checked with neighbors too.'
+  - '@AmazonHelp said package was handed to resident but nobody was home! My package
+    is missing.'
+  - '@AmazonHelp courier claims package delivered, no card left, nowhere to be found.
+    Please help.'
+  confusing_examples:
+  - '@AmazonHelp package is still in transit (belongs to order_delay_tracking)'
+  - '@AmazonHelp box arrived empty without the phone inside (belongs to damaged_defective_item)'
+  approximate_frequency: 0.14
+  default_action: AUTO_HANDLE
+  requires_human_if: high value item (> $100) or carrier fraud suspected
+- id: refund_cancellation
+  name: Order Cancellation & Refund Inquiry
+  description: Customer wants to cancel an order, requests a refund, or inquires about
+    the status of a pending refund.
+  positive_examples:
+  - '@AmazonHelp how do I cancel an order that hasn''t shipped yet?'
+  - '@AmazonHelp returned my item 2 weeks ago and still have not received my refund
+    to my bank card.'
+  - '@AmazonHelp order was cancelled by seller but money was deducted from my account.
+    Refund please.'
+  confusing_examples:
+  - '@AmazonHelp I want to return this dress because it is too small (belongs to return_exchange)'
+  - '@AmazonHelp double charge on my credit card (belongs to payment_billing_issue)'
+  approximate_frequency: 0.16
+  default_action: AUTO_HANDLE
+  requires_human_if: refund disputed or exceeded standard 5-7 business day window
+- id: return_exchange
+  name: Return Request & Replacement
+  description: Customer asks how to initiate a return, request an exchange, obtain
+    a return mailing label, or drop off an item.
+  positive_examples:
+  - '@AmazonHelp I need a replacement, item received was wrong size and color.'
+  - '@AmazonHelp how do I generate a return label for a gift purchase?'
+  - '@AmazonHelp can I drop off my return at a local locker or UPS drop point without
+    a printer?'
+  confusing_examples:
+  - '@AmazonHelp item arrived smashed and broken in pieces (belongs to damaged_defective_item)'
+  - '@AmazonHelp where is my refund for the returned item (belongs to refund_cancellation)'
+  approximate_frequency: 0.11
+  default_action: AUTO_HANDLE
+  requires_human_if: return window expired or non-returnable hazardous item
+- id: damaged_defective_item
+  name: Damaged, Defective or Wrong Item
+  description: Customer received a damaged package, broken merchandise, wrong item,
+    or product missing parts.
+  positive_examples:
+  - '@AmazonHelp opened the box and the glass bottle was completely shattered inside.'
+  - '@AmazonHelp ordered an iPhone case and received a shampoo bottle instead.'
+  - '@AmazonHelp laptop screen is flickering right out of the box. Completely defective.'
+  confusing_examples:
+  - '@AmazonHelp package never arrived (belongs to missing_delivered_item)'
+  - '@AmazonHelp I don''t like the color of the shirt (belongs to return_exchange)'
+  approximate_frequency: 0.09
+  default_action: AUTO_HANDLE
+  requires_human_if: safety hazard, chemical leakage, or high-value damaged electronics
+- id: payment_billing_issue
+  name: Payment, Charges & Gift Cards
+  description: Customer reports unexpected charges, double billing, payment method
+    declined, or gift card redemption errors.
+  positive_examples:
+  - '@AmazonHelp seeing an unauthorized charge of $14.99 on my debit card that I did
+    not make.'
+  - '@AmazonHelp my card was charged twice for the same order ID.'
+  - '@AmazonHelp gift card code says already redeemed when I just scratched off the
+    silver strip.'
+  confusing_examples:
+  - '@AmazonHelp refund taking too long (belongs to refund_cancellation)'
+  - '@AmazonHelp Prime annual renewal charge (belongs to prime_membership)'
+  approximate_frequency: 0.08
+  default_action: ESCALATE
+  requires_human_if: unrecognized fraudulent charge or payment dispute
+- id: account_access_security
+  name: Account Access, OTP & Security
+  description: Customer is locked out of account, 2-step verification OTP not arriving,
+    password reset failure, or suspect hacked account.
+  positive_examples:
+  - '@AmazonHelp locked out of my account and not receiving the OTP on my registered
+    phone number.'
+  - '@AmazonHelp someone accessed my account and changed the email address. Need urgent
+    help!'
+  - '@AmazonHelp password reset email never arrives in my inbox or spam folder.'
+  confusing_examples:
+  - '@AmazonHelp payment declined on my account (belongs to payment_billing_issue)'
+  approximate_frequency: 0.05
+  default_action: ESCALATE
+  requires_human_if: account compromise, credential theft, or unauthorized profile
+    changes
+- id: prime_membership
+  name: Amazon Prime Subscription & Benefits
+  description: Inquiries regarding Prime subscription fees, trial cancellation, video
+    streaming errors, or student discount verification.
+  positive_examples:
+  - '@AmazonHelp how do I cancel my Amazon Prime free trial so I don''t get charged?'
+  - '@AmazonHelp I was charged for Prime membership but I already cancelled it last
+    month.'
+  - '@AmazonHelp Prime Video error code 5004 on smart TV, cannot stream movies.'
+  confusing_examples:
+  - '@AmazonHelp Prime 2-day delivery arrived late (belongs to order_delay_tracking)'
+  - '@AmazonHelp unexpected charge on card (belongs to payment_billing_issue)'
+  approximate_frequency: 0.05
+  default_action: AUTO_HANDLE
+  requires_human_if: membership fee dispute or multi-year back-billing
+- id: digital_device_support
+  name: Echo, Kindle & Digital Content
+  description: Technical support for Kindle e-readers, Echo Alexa speakers, Fire TV
+    sticks, audiobooks, or Kindle ebook delivery.
+  positive_examples:
+  - '@AmazonHelp my Kindle paperwhite is frozen on the wake screen and won''t hard
+    reset.'
+  - '@AmazonHelp purchased an ebook for Kindle and it hasn''t synced to my device.'
+  - '@AmazonHelp Echo dot keeps saying ''having trouble understanding right now''.'
+  confusing_examples:
+  - '@AmazonHelp Echo arrived with crushed box (belongs to damaged_defective_item)'
+  - '@AmazonHelp Prime Video won''t play (belongs to prime_membership)'
+  approximate_frequency: 0.04
+  default_action: AUTO_HANDLE
+  requires_human_if: hardware failure requiring warranty RMA replacement
+- id: human_agent_complaint
+  name: Agent Escalation & Customer Service Complaint
+  description: Customer expresses intense frustration with bot/support, reports rude agent, or explicitly demands to speak to a human supervisor.
+  positive_examples:
+  - '@AmazonHelp I want to speak to a real human person right now, stop sending automated replies!'
+  - '@AmazonHelp your customer service rep hung up on me. I demand to speak to a manager immediately.'
+  - '@AmazonHelp absolute worst support ever, nobody is listening. Transfer me to an executive supervisor.'
+  confusing_examples:
+  - '@AmazonHelp where is my package (belongs to order_delay_tracking)'
+  - '@AmazonHelp please cancel order (belongs to refund_cancellation)'
+  approximate_frequency: 0.03
+  default_action: ESCALATE
+  requires_human_if: explicit demand for human agent, supervisor escalation, or severe representative misconduct
+

@@ -1,0 +1,143 @@
+{
+  "baseline_1_majority": {
+    "model": "Baseline 1: Majority Class",
+    "accuracy": 0.3323,
+    "macro_f1": 0.0499,
+    "macro_precision": 0.0332,
+    "macro_recall": 0.1,
+    "weighted_f1": 0.1658,
+    "per_intent": {
+      "account_access_security": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 46
+      },
+      "damaged_defective_item": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 55
+      },
+      "digital_device_support": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 53
+      },
+      "human_agent_complaint": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 114
+      },
+      "missing_delivered_item": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 58
+      },
+      "order_delay_tracking": {
+        "precision": 0.3323,
+        "recall": 1.0,
+        "f1": 0.4989,
+        "support": 332
+      },
+      "payment_billing_issue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 61
+      },
+      "prime_membership": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 75
+      },
+      "refund_cancellation": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 166
+      },
+      "return_exchange": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 39
+      }
+    }
+  },
+  "baseline_2_tfidf_logistic": {
+    "model": "Baseline 2: TF-IDF + Logistic Regression",
+    "accuracy": 0.5756,
+    "macro_f1": 0.5291,
+    "macro_precision": 0.5269,
+    "macro_recall": 0.5579,
+    "weighted_f1": 0.59,
+    "per_intent": {
+      "account_access_security": {
+        "precision": 0.7073,
+        "recall": 0.6304,
+        "f1": 0.6667,
+        "support": 46
+      },
+      "damaged_defective_item": {
+        "precision": 0.3182,
+        "recall": 0.3818,
+        "f1": 0.3471,
+        "support": 55
+      },
+      "digital_device_support": {
+        "precision": 0.614,
+        "recall": 0.6604,
+        "f1": 0.6364,
+        "support": 53
+      },
+      "human_agent_complaint": {
+        "precision": 0.4611,
+        "recall": 0.6754,
+        "f1": 0.548,
+        "support": 114
+      },
+      "missing_delivered_item": {
+        "precision": 0.3196,
+        "recall": 0.5345,
+        "f1": 0.4,
+        "support": 58
+      },
+      "order_delay_tracking": {
+        "precision": 0.8257,
+        "recall": 0.5994,
+        "f1": 0.6946,
+        "support": 332
+      },
+      "payment_billing_issue": {
+        "precision": 0.3636,
+        "recall": 0.3279,
+        "f1": 0.3448,
+        "support": 61
+      },
+      "prime_membership": {
+        "precision": 0.5934,
+        "recall": 0.72,
+        "f1": 0.6506,
+        "support": 75
+      },
+      "refund_cancellation": {
+        "precision": 0.7807,
+        "recall": 0.5361,
+        "f1": 0.6357,
+        "support": 166
+      },
+      "return_exchange": {
+        "precision": 0.2857,
+        "recall": 0.5128,
+        "f1": 0.367,
+        "support": 39
+      }
+    },
+    "mean_retrieval_similarity": 0.4291
+  }
+}

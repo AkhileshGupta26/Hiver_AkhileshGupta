@@ -1,0 +1,33 @@
+# Environment variables
+.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Dataset & cache
+data/
+*.csv
+*.zip
+.cache/
+.kaggle/
+
+# Model & index cache
+models/
+faiss_index/
+*.index
+*.pt
+*.bin
+
+# Evaluation logs & temp
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
